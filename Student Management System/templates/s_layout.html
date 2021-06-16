@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SJCET</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3><span>SJCET</span></h3>
+      </div>
+      <div class="right_area">
+        <a href="#" class="logout_btn">Logout</a>
+      </div>
+    </header>
+    <!--header area end-->
+    
+    <!--sidebar start-->
+    <div class="sidebar">
+      <div class="profile_info">
+        <img src="{{ url_for('static',filename='styles/images/1.png') }}" class="profile_image" alt="">
+        <h4>User</h4>
+      </div>
+      <a href="s_welcome"><i class="fas fa-clipboard"></i></i><span>Home</span></a>
+      <a href="s_profile"><i class="fas fa-user"></i><span>Profile</span></a>
+      <a href="s_timetable"><i class="fas fa-table"></i><span>Timetable</span></a>
+      <a href="s_marks"><i class="fas fa-th"></i><span>Marks</span></a>
+      <a href="s_attendance"><i class="fas fa-user-check"></i><span>Attendance</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+        {% block body %}{% endblock %}
+    </div>
+    
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.nav_btn').click(function(){
+        $('.mobile_nav_items').toggleClass('active');
+      });
+    });
+    </script>
+
+  </body>
+</html>
+      

@@ -1,0 +1,77 @@
+{% extends 's_layout.html' %}
+{% block body %}
+
+
+      
+  <div class="container">
+
+    <div class="row">
+
+      <div class="card">
+        <div class="card-header">
+            <img src="{{ url_for('static',filename='styles/images/profile.png') }}" alt="" srcset="">
+        </div>
+        <h3 align="center">Profile</h3>
+        <div class="card-body">
+          
+          <p>
+            View the details of the student. it displays the basic student details like name, admission number,
+             phone number, address etc .
+          </p>
+          
+          
+          <a href="s_profile" class="btn">Read more</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <img src="{{ url_for('static',filename='styles/images/attendance.jpg') }}" alt="" srcset="">
+        </div>
+        <h3 align="center">Attendance</h3>
+        <div class="card-body">
+          <p>
+            View the attendence status of your course. The attendence of each subject is displayed as a 
+            list of classes that were conducted
+          </p>
+          
+          <a href="s_attendance" class="btn">Read more</a>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+            <img src="{{ url_for('static',filename='styles/images/marks.jpg') }}" alt="" srcset="">
+        </div>
+        <h3 align="center">Marks</h3>
+        <div class="card-body">
+          <p>
+            View the marks for each subject. These include the marks of 3 internal exams, 2 assignments and the End 
+            Semester exam.
+                    </p>
+                    
+          <a href="s_marks" class="btn">Read more</a>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+            <img src="{{ url_for('static',filename='styles/images/marks.jpg') }}" alt="" srcset="">
+        </div>
+        <h3 align="center">Timetable</h3>
+        <div class="card-body">
+          <p>
+            View the timetable for each day. The timetable displays all the courses of the student and 
+            the time and day in which they are conducted.
+                    </p>
+          <a href="s_timetable" class="btn">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>       
+
+
+
+{% endblock %}
+
+      
