@@ -1,0 +1,161 @@
+* {
+  margin: 0px;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.nav {
+  width: 100%;
+  height: 75px;
+  background-color: #190761;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.nav .nav-brand h3 {
+  padding: 20px 40px;
+  color: white;
+}
+
+.nav h4 {
+  margin-left: 1000px;
+  color: white;
+  height: 20px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.content {
+  max-width: 100%;
+  margin: auto;
+  background-color: #e0dede;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+}
+
+.content .left {
+  margin: 10px;
+  width: 220px;
+  height: 500px;
+  background-color: #190761;
+  border-radius: 10px;
+}
+
+.content .list {
+  padding-top: 20px;
+  margin: auto;
+}
+
+.content li {
+  color: #e6e6e6;
+  font-size: 18px;
+  margin-top: 30px;
+  font-weight: bold;
+  list-style: none;
+  letter-spacing: .2rem;
+}
+
+.content a {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.content a:hover {
+  background-color: #7364ff;
+  border-radius: 5px;
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+}
+
+.right {
+  max-width: 98%;
+}
+
+.right .tab {
+  margin-top: 30px;
+  max-width: 100%;
+  background-color: white;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 3fr;
+      grid-template-rows: 1fr 3fr;
+  height: 450px;
+  border-radius: 6px;
+}
+
+.right .tab .bar {
+  height: 50px;
+  background-color: #655cb8;
+}
+
+.right .tab .bar h3 {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.right .tab .bar h3 span {
+  background-color: #f389ac;
+  width: 50px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.right .tab .box {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  height: 400px;
+}
+
+.right .tab .box .facul {
+  margin-left: 20px;
+  border-radius: 10px;
+  background-color: #f6f4f4;
+  width: 300px;
+  height: 165px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-top: 10px;
+  -webkit-box-shadow: 0px 3px 6px rgba(49, 48, 48, 0.16);
+          box-shadow: 0px 3px 6px rgba(49, 48, 48, 0.16);
+  cursor: pointer;
+}
+
+.right .tab .box .facul .f-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 80px;
+  border: 3px solid #a89ff3;
+  margin: 20px 10px;
+}
+
+.right .tab .box .facul .f-img img {
+  width: 100px;
+  height: 100px;
+  border-radius: 80px;
+}
+
+.right .tab .box .facul p {
+  margin: 20px 10px;
+  color: #8b8888;
+  font-size: 15px;
+  max-width: 160px;
+}
+/*# sourceMappingURL=faculties.css.map */
