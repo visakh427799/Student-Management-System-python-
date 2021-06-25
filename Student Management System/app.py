@@ -21,7 +21,12 @@ mysql = MySQL(app)
 
 @app.route('/')
 def index():
+    cursor =mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('select * from students')
+    result=cursor.fetchone()
+    print(result)
     return render_template('home.html')
+
 
 #admin routes
 #login route for admin
@@ -73,7 +78,13 @@ def students():
 def faculties():
     return render_template('Admin/faculties.html')
 
+@app.route('/admin/events',methods=['GET','POST'])
+def adminEvents():
+    return render_template('Admin/events.html')
 
+
+
+#user routes
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():

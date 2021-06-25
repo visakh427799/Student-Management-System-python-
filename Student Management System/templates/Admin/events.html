@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="../../static/styles/Admin/events.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Sans+Pro:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script src="main.js"></script>
+    <style>
+      .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(149, 147, 147); /* Fallback color */
+  background-color: rgba(184, 184, 184, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #ffffff;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.model-box{
+  width: 400px;
+  height:400px;
+  background-color: rgb(255, 255, 255);;
+}
+.model-box
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="nav-brand">
+        <h3>ADMIN</h3>
+      </div>
+      <h4>Logout</h4>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <ul class="list">
+          <li><a>DASHBOARD</a></li>
+          <li><a> Students</a></li>
+          <li><a>Faculties</a></li>
+          <li><a> Attendance</a></li>
+          <li><a> Marks</a></li>
+          <li><a> Events</a></li>
+        </ul>
+      </div>
+      <div class="right">
+
+        <div class="tab">
+          <div class="bar">
+              <h3>EVENTS</h3>
+             
+          </div>
+        <div class="box">
+            <div class="events">
+                <div class="event-card">
+                   <div class="lft" style=" background-color: rgb(241, 24, 107);background-image: url('https://www.techfunnel.com/wp-content/uploads/2020/12/machine-learning-vs-deep-learning.png')""><p>21<span style="font-size:20px; ">Jun</span></p></div>
+                   <div class="rft"><p>Machine learning workshop conducted by MA college <button id="myBtn">More info</button></p></div>
+                </div>
+                <div class="event-card">
+                    <div class="lft"   style=" background-color: rgb(2, 1, 1); background-image: url('https://www.rlogical.com/wp-content/uploads/2020/12/MERN-Stack-considered-the-Best-for-Developing-Web-Apps.png')"><p>21<span style="font-size:20px; ">May</span></p></div>
+                    <div class="rft"><p>MERN stack web development section from IIT <button >More info</button></p></div>
+ 
+                </div>
+                <div class="event-card">
+                    <div class="lft" style=" background-color: rgb(0, 0, 0);background-image: url('https://www.appstudio.ca/blog/wp-content/uploads/2020/09/Life-Cycle-of-Devops.jpg')""><p>21<span style="font-size:20px; ">Oct</span></p></div>
+                    <div class="rft"><p>Devops webinar by T.D Jaynendrakumar<button>More info</button> </p></div>
+
+                </div>
+                <div class="event-card">
+                    <div class="lft" style=" background-color: rgb(241, 24, 107);background-image: url('https://cdn.educba.com/academy/wp-content/uploads/2018/10/Top-Uses-Of-reactjs.jpg')""><p>21<span style="font-size:20px; ">Feb</span></p></div>
+                   <div class="rft"><p>React js workshop by visakh t.s<button>More info</button></p></div>
+                </div>
+            </div>
+               
+        </div>
+        
+      </div>
+    </div>
+    <!-- <div class="more">
+       <div class="sec2">
+
+       </div>
+    </div> -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="model-box">
+          <div class="model-bar"></div>
+          <div class="modal-section"></div>
+        </div>
+      </div>
+    
+    </div>
+    <script>
+      var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+    </script>
+  </body>
+</html>
