@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src='main.js'></script>
+   
 </head>
 <body>
     <div class="nav">
@@ -17,18 +17,20 @@
            <h3>ADMIN</h3>
          
         </div>
-        <h4>Logout</h4>
+        <a href="/admin/logout"><h4>Logout</h4></a>
     </div>
 
     <div class="content">
-        <div class="left">
+        <div class="left" ">
           <ul class="list">
-              <li><a>DASHBOARD</a></li>
-              <li><i class="material-icons">face</i> <a> Students</a></li>
-              <li><a><i class="material-icons">face</i> Faculties</a></li>
-              <li><a> <i class="material-icons">face</i>Attendance</a></li>
-              <li><a> <i class="material-icons">face</i>Marks</a></li>
-              <li><a> <i class="material-icons">face</i>Events</a></li>
+              <li style="padding-top:30px;"><a>DASHBOARD</a></li>
+              <li style="padding-top:30px;"> <a> Students</a></li>
+              <li style="padding-top:20px;"><a style="color:white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
+              <li style="padding-top:20px;"><a> Attendance</a></li>
+              <li style="padding-top:20px;"><a> Marks</a></li>
+              <li style="padding-top:20px;"><a> Events</a></li>
+              <li style="padding-top:20px;"><a> Account </a></li>
+          </ul>
           </ul>
         </div>
         <div class="right">
@@ -49,14 +51,14 @@
                       </div>
                 </div>
                 <div class="info">
-                   <h1>Dr. T.D Jainendrakumar</h1>
+                   <h1>{{account.name}}</h1>
                   <p>
-                    Professor  & HOD MCA<br>
-                    Department of Computer Science & Applications<br>
-                    Mobile Number   : +91 9447828497<br>
-                    Email  : hodmca@sjcetpalai.ac.in<br>
-                    Date of Joining  :02.07.2015<br>
-                    Nature of association  :Contractual<br>
+                    {{account.designation}}<br>
+                    {{account.department}}<br>
+                    Mobile Number   : +91 {{account.mobile_number}}<br>
+                    Email  : {{account.email}}<br>
+                    Date of Joining  :{{account.date_joined}}<br>
+                    
                   </p>
                  
                  

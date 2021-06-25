@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="../../static/styles/Admin/adminLogin.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Sans+Pro:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <title>Document</title>
+    <style>
+      .loader {
+        border: 5px solid #ececec;
+        border-radius: 50%;
+        border-top: 5px solid #0af832;
+        width: 30px;
+        height: 30px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+        margin: auto;
+        background-color: white;
+      }
+      
+      /* Safari */
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      </style>
+  </head>
+  <body>
+    <h3> ADMIN LOGIN</h3>
+    <div class="box1" style="background-image:url('../../static/styles/Admin/images/login.jpg');">
+      <!-- <form action="/admin/login" method="POST"> -->
+                        <div class="login-form">
+                         
+                                <div class="input-group"><input required type="text" id="uname" name="uname" placeholder="username"></div>
+                                <div class="input-group"><input required type="text" id="pass" name="pass"  placeholder="password"></div>
+                                <div  class="input-group">
+                                    <div  class="loader" id="loginloader" style="display: none;"></div>
+                                    <button id="loginbtn" onclick="login()" >Login</button>
+                                   
+                                </div>
+                                <span style="text-align: center;color: red;">{{message}}</span>
+                              </div>
+                            <!-- </form>       -->
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    const login=()=>{
+      let username=document.getElementById('uname').value;
+      let password=document.getElementById('pass').value;
+      let btn=document.getElementById('loginbtn')
+      let loader=document.getElementById('loginloader')
+      if(username&&password){
+        btn.style.display="none"
+        loader.style.display="block"
+        $.ajax({
+            data : {
+               username :username ,
+               password:password ,
+                   },
+               type : 'POST',
+               url : '/admin/login'
+              })
+          .done(function(data) {
+            if(data.status){
+                console.log(data.status);
+                location.href="/admin/dashboard"
+            }
+            else{
+              alert("Invalid credentials")
+              btn.style.display="block"
+              loader.style.display="none"
+
+            }
+        });
+      }
+      else{
+        alert("Please fill all the fields..!!")
+      }
+      
+  }
+  </script>
+    <script type="javascript" src="../../static/Javascript/Admin/adminLogin.js"></script>
+  </body>
+</html>
