@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+    rel="stylesheet"
+    type="text/css"
+
+    media="screen"
+    href="{{ url_for('static',filename='/../../static/styles/Admin/editStudentProfile.css') }}"
+
+    
+  />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Sans+Pro:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="nav-brand">
+        <h3>ADMIN</h3>
+      </div>
+      <h4>Logout</h4>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <ul class="list">
+          <li><a>DASHBOARD</a></li>
+          <li><a> Students</a></li>
+          <li><a>Faculties</a></li>
+          <li><a> Attendance</a></li>
+          <li><a> Marks</a></li>
+          <li><a> Events</a></li>
+        </ul>
+      </div>
+      <div class="right">
+
+        <div class="tab">
+          <div class="bar">
+              <h3>Visakh T.S</h3>
+             
+          </div>
+        <div class="box">
+                <h3>Edit Student Details</h3>
+             <form action="/admin/editStudentProfile" method="POST"  enctype = "multipart/form-data">  
+             <div  class="st-section1">
+         
+                      <div class="st-img">
+                        
+                          <img id="pro-pic" src="{{account.profile_img}}"/>
+                          <div class="edit-btn">
+                            <button><input  id="newSrc" onchange="imagePreview(event)" name="file" type="file"> </button>
+                        </div>
+                      </div>
+                      
+                      <div class="st-info1">
+                        <input type="hidden" name="stid" value={{account.id}}>
+                        <label>Student name</label>
+                         <div class="inp-grp">
+                             <input required name="fname" value='{{account.fname}}' placeholder="Enter student name" type="text"> 
+                         </div>
+                         <label>Admision number</label>
+                         <div class="inp-grp">
+                             <input readonly required name="adnum" value={{account.admission_number}} placeholder="Enter admission number" type="text"> 
+                         </div>
+                         <label>Phone</label>
+                         <div class="inp-grp">
+                             <input required name="phn" value={{account.phone}} placeholder="Enter phone number" type="text"> 
+                         </div>
+                         <label>Email</label>
+                         <div class="inp-grp">
+                             <input required name="em" value={{account.email}} placeholder="Enter email" type="text"> 
+                         </div>
+                         <label>Address</label>
+                         <div class="inp-grp">
+                             <input required name="add" value='{{account.address}}' placeholder="Enter address" type="text"> 
+                         </div>
+                         <div class="actns">
+                         <button>SAVE</button>
+                        </div>
+                      </div>
+                      <div class="st-info2">
+                        
+                       <label>Gender</label>
+                         <div class="inp-grp">
+                             <!-- <input  placeholder="Enter event description" type="text">  -->
+                             <select required name="gen" class="select" style="width:270px;">
+                              
+                                 <option value="Male">Male</option>
+                                 <option value="Female">Female</option>
+                             </select>
+                         </div>
+                         <label>Religion</label>
+                         <div class="inp-grp">
+                            <select required name="rel" class="select" style="width:270px;">
+                              <option selected value={{account.religion}}>{{account.religion}}</option>
+                              
+                                <option value="Hindu">Hindu</option>
+                                <option value="Christian" >Christian</option>
+                            </select>
+                         </div>
+                         <label>Date of birth</label>
+                         <div class="inp-grp">
+                             <input value={{account.dob}} required name="dob" placeholder="Enter event description" type="date"> 
+                         </div>
+                         <label>Course</label>
+                         <div class="inp-grp">
+                            <select required name="cor" class="select" style="width:270px;">
+                              <option selected value={{account.course}}>{{account.course}}</option>
+                                <option value="MCA">MCA</option>
+                                <option value="BCA">BCA</option>
+                            </select>
+                         </div>
+                         <label>Batch</label>
+                         <div class="inp-grp">
+                            <select required name="bat" class="select" style="width:270px;">
+                              <option selected value={{account.batch}}>{{account.batch}}</option>
+                                <option value="2019-2022">2019-2022</option>
+                                <option value="2020-2023" >2020-2023</option>
+                            </select>
+                         </div>
+
+                        
+                    </div>
+                   
+               </div>
+               
+              </form>
+          </div>
+
+
+         
+      </div>
+        
+      </div>
+    </div>
+    <!-- <div class="more">
+       <div class="sec2">
+
+       </div>
+    </div> -->
+    <script>
+ 
+  const imagePreview=(event)=>{
+    let pro_pic=document.getElementById("pro-pic");
+    let newSrc= URL.createObjectURL(event.target.files[0]);
+    console.log(newSrc);
+    pro_pic.src=newSrc
+  }
+    </script>
+  </body>
+</html>

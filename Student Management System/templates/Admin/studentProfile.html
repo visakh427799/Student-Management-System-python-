@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+    rel="stylesheet"
+    type="text/css"
+
+    media="screen"
+    href="{{ url_for('static',filename='/../../static/styles/Admin/studentProfile.css') }}"
+
+    
+  />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Sans+Pro:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script src="main.js"></script>
+    <style>
+      .content .left {
+  margin: 10px;
+  width: 210px;
+  height: 400px;
+  background-color: #190761;
+  border-radius: 10px;
+}
+
+.right .tab{
+  height:350px;
+}
+.right .tab .box .actions .btns {
+  margin-left: 30px;
+  margin-top: -40px;
+}
+ 
+
+ 
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="nav-brand">
+        <h3>ADMIN</h3>
+      </div>
+      <h4>Logout</h4>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <ul class="list">
+          <li><a>DASHBOARD</a></li>
+          <li><a> Students</a></li>
+          <li><a>Faculties</a></li>
+          <li><a> Attendance</a></li>
+          <li><a> Marks</a></li>
+          <li><a> Events</a></li>
+        </ul>
+      </div>
+      <div class="right">
+
+        <div class="tab">
+          <div class="bar">
+              <h3>Visakh T.S</h3>
+             
+          </div>
+        <div class="box">
+                <h3>Student Details</h3>
+             <div  class="st-section1">
+         
+                      <div class="st-img">
+                          <img src="https://icons-for-free.com/iconfiles/png/512/student+icon-1320184412790928936.png"/>
+                      </div>
+                      <div class="st-info1">
+                        
+                        <p>Admission No:  <span style="margin-left:10px;">{{account.admission_number}}</span> </p>
+                        <p>Student Name: <span style="margin-left:10px;">{{account.fname}}</span></p>
+                        <p>Gender: {{account.gender}}</p>
+                        <p>Date of birth : {{account.dob}}</p>
+                        <p>Religion : {{account.religion}}</p>
+                        <p>Phone No: {{account.phone}}</p>
+                        
+                      
+                      </div>
+                      <div class="st-info2">
+                        <p>Address :{{account.address}}</p>
+                        <p>Email: {{account.email}}</p>
+                        <p>Course: {{account.course}}</p>
+                        <p>Batch : {{account.batch}}</p>
+                        <p>Profile approval status: 
+                          {% if account.approval %}
+                            <span style="color:rgb(50, 158, 0) ;padding-left:20px">Approved</span></p>
+                            {% else %}
+                            <span style="color:rgb(255, 32, 32)">Not Approved</span></p>
+                      {% endif %}
+                        
+                        
+                        
+                    </div>
+
+               </div>
+               
+               <div class="actions">
+                <div class="btns">
+                  {% if account.approval %}
+                  <button disabled  style="background-color: rgb(158, 158, 158);" >APPROVED</button>
+                  {% else%}
+                  <button style="background-color: rgb(73, 172, 106);" >APPROVE</button>
+                  
+                  {% endif%}
+                </div>
+                  <div class="btns">
+                    <a href="/admin/editStudentProfile/{{account.id}}/{{account.admission_number}}"><button style="background-color: rgb(219, 151, 96);">EDIT</button></a>
+                  </div>
+                  <div class="btns">
+                    <button style="background-color: rgb(226, 84, 84);">DELETE</button>
+                  </div>
+                  <div class="btns">
+                    <button style="background-color: rgb(141, 88, 172);">MARKS</button>
+                  </div>
+                  <div class="btns">
+                    <button>ATTENDANCE</button>
+                  </div>
+              </div>
+             
+          </div>
+        
+         
+      </div>
+        
+      </div>
+    </div>
+    <!-- <div class="more">
+       <div class="sec2">
+
+       </div>
+    </div> -->
+  </body>
+</html>

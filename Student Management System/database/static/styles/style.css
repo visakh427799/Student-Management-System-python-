@@ -1,0 +1,458 @@
+body{
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+header{
+  z-index: 1;
+  position: fixed;
+  background: #22242A;
+  padding: 15px;
+  width: calc(100% - 0%);
+  top: 0;
+  height: 30px;
+}
+
+.left_area h3{
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.left_area span{
+  color: #19B3D3;
+}
+
+.logout_btn{
+  padding: 5px;
+  background: #19B3D3;
+  text-decoration: none;
+  float: right;
+  margin-top: -30px;
+  margin-right: 40px;
+  border-radius: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  transition: 0.5s;
+  transition-property: background;
+}
+
+.logout_btn:hover{
+  background: #0B87A6;
+}
+
+.sidebar{
+  z-index: 1;
+  top: 0;
+  background: #2f323a;
+  margin-top: 60px;
+  padding-top: 25px;
+  position: fixed;
+  left: 0;
+  width: 250px;
+  height: calc(100% - 9%);
+  transition: 0.5s;
+  transition-property: left;
+  overflow-y: auto;
+  
+}
+
+.profile_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar .profile_info .profile_image{
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+}
+
+.sidebar .profile_info h4{
+  color: #ccc;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.sidebar a{
+  color: #fff;
+  display: block;
+  width: 100%;
+  line-height: 60px;
+  text-decoration: none;
+  padding-left: 40px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  transition-property: background;
+}
+
+.sidebar a:hover{
+  background: #19B3D3;
+}
+
+.sidebar i{
+  padding-right: 10px;
+  
+}
+
+label #sidebar_btn{
+  z-index: 1;
+  color: #fff;
+  position: fixed;
+  cursor: pointer;
+  left: 120px;
+  font-size: 20px;
+  margin: 5px 0;
+  transition: 0.5s;
+  transition-property: color;
+}
+
+label #sidebar_btn:hover{
+  color: #19B3D3;
+}
+
+#check:checked ~ .sidebar{
+  left: -185px;
+}
+
+#check:checked ~ .sidebar a span{
+  display: none;
+}
+
+#check:checked ~ .sidebar a{
+  font-size: 20px;
+  margin-left: 165px;
+  width: 100%;
+}
+
+.content{
+  width: (100% - 250px);
+  margin-top: 20px;
+  padding: 20px;
+  margin-left: 250px;
+  background: url(/static/styles/images/background.png) no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: 0.5s;
+  
+}
+
+#check:checked ~ .content{
+  margin-left: 60px;
+}
+
+#check:checked ~ .sidebar .profile_info{
+  display: none;
+}
+
+#check{
+  display: none;
+}
+
+
+/* Responsive CSS */
+
+@media screen and (max-width: 780px){
+  .sidebar{
+    display: none;
+  }
+
+  #sidebar_btn{
+    display: none;
+  }
+
+  .content{
+    margin-left: 0;
+    margin-top: 0;
+    padding: 10px 20px;
+    transition: 0s;
+  }
+
+  #check:checked ~ .content{
+    margin-left: 0;
+  }
+
+  .nav_bar{
+    background: #222;
+    width: (100% - 0px);
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .nav_bar .nav_btn{
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.5s;
+    transition-property: color;
+  }
+
+  .nav_bar .nav_btn:hover{
+    color: #19B3D3;
+  }
+
+  .active{
+    display: block;
+  }
+}
+
+
+.container {
+  width: 100%;
+  margin: 30px auto;
+}
+.heading {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+
+.card {
+  width: 22%;
+  background: #fff;
+  border: 2px solid #ccc;
+  margin-bottom: 50px;
+  transition: 0.5s;
+  border-radius: 12px;
+}
+
+.card-header {
+  text-align: center;
+  padding: 20px 10px;
+  
+}
+
+.card-body {
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.card-body .btn {
+  display: block;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  margin-top: 30px;
+  text-decoration: none;
+  padding: 10px 5px;
+  bottom: 5px;
+  
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (max-width: 1000px) {
+  .card {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .container {
+    width: 100%;
+  }
+
+  .heading {
+    padding: 20px;
+    font-size: 20px;
+  }
+
+  .card {
+    width: 80%;
+  }
+}
+
+
+
+
+
+
+.mark_table_content {
+  width: 100%;
+  padding-top: 20px;
+}
+
+.mark_table {
+  border: 1px solid #000;
+  border-collapse: collapse
+}
+
+.mark_table td, tr, th{
+  border: 1px solid #000;
+  height: 70px;
+  text-align: center;
+}
+
+.mark_table th{
+  background-color: aqua;
+}
+
+.mark_table tr:nth-child(even) {
+  background-color: #f2f2f2;  
+}
+
+.mark_table tr:nth-child(odd) {
+  background-color: #9b9696;  
+}
+
+.mark_table tr:nth-child(even):hover {
+  background-color: #d1f533;  
+}
+
+.mark_table tr:nth-child(odd):hover {
+  background-color: #d1f533;  
+}
+
+.mark_note{
+  position: absolute;
+  bottom: 0;
+  font-weight: bolder;
+  
+}
+
+.timetable_content {
+  width: 100%;
+  padding-top: 20px;
+}
+
+.timetable_table{
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+
+.timetable_table td, tr, th{
+  border: 1px solid #000;
+  height: 70px;
+  text-align: center;
+}
+
+.timetable_table th{
+  background-color: aqua;
+}
+
+.timetable_table tr:nth-child(even) {
+  background-color: #f2f2f2;  
+}
+
+.timetable_table tr:nth-child(odd) {
+  background-color: #9b9696;  
+}
+
+.timetable_table tr:nth-child(even):hover {
+  background-color: #d1f533;  
+}
+
+.timetable_table tr:nth-child(odd):hover {
+  background-color: #d1f533;  
+}
+
+.timetable_note{
+  position: absolute;
+  bottom: 0;
+  font-weight: bolder;
+  
+}
+
+.attendance_table_content {
+  width: 100%;
+  padding-top: 20px;
+}
+
+.attendance_table {
+  border: 1px solid #000;
+  border-collapse: collapse
+}
+
+.attendance_table td, tr, th{
+  border: 1px solid #000;
+  height: 70px;
+  text-align: center;
+}
+
+.attendance_table th{
+  background-color: aqua;
+}
+
+.attendance_table tr:nth-child(even) {
+  background-color: #f2f2f2;  
+}
+
+.attendance_table tr:nth-child(odd) {
+  background-color: #9b9696;  
+}
+
+.attendance_table tr:nth-child(even):hover {
+  background-color: #d1f533;  
+}
+
+.attendance_table tr:nth-child(odd):hover {
+  background-color: #d1f533;  
+}
+
+.attendance_note{
+  position: absolute;
+  bottom: 0;
+  font-size: large;
+  color: #fff;
+}
+
+
+.profile_table {
+    margin-top: 35px;
+    display: table;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.profile_table {
+  border: 1px solid #000;
+  border-collapse: collapse
+}
+
+.profile_table td, tr, th{
+  border: 1px solid #000;
+  height: 70px;
+  text-align: center;
+}
+
+.profile_table th{
+  background-color: aqua;
+}
+
+.profile_table tr:nth-child(even) {
+  background-color: #f2f2f2;  
+}
+
+.profile_table tr:nth-child(odd) {
+  background-color: #9b9696;  
+}
+
+.profile_table tr:nth-child(even):hover {
+  background-color: #d1f533;  
+}
+
+.profile_table tr:nth-child(odd):hover {
+  background-color: #d1f533;  
+}

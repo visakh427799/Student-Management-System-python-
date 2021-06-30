@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+
+      media="screen"
+      href="{{ url_for('static',filename='/../../static/styles/Admin/addEvent.css') }}"
+
+      
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Sans+Pro:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="nav-brand">
+        <h3>ADMIN</h3>
+      </div>
+      <h4>Logout</h4>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <ul class="list">
+          <li><a>DASHBOARD</a></li>
+          <li><a> Students</a></li>
+          <li><a>Faculties</a></li>
+          <li><a> Attendance</a></li>
+          <li><a> Marks</a></li>
+          <li><a> Events</a></li>
+        </ul>
+      </div>
+      <div class="right">
+
+        <div class="tab">
+          <div class="bar">
+              <h3>ADD NEW EVENT</h3>
+             
+          </div>
+        <div class="box">
+            <form action="/admin/addevent" method="POST"  enctype = "multipart/form-data">
+            <div class="event-form">
+                <div class="inp-grp">
+                   <input name="event-name" placeholder="Enter event name" type="text">
+                </div>
+                <div class="inp-grp">
+                    <input name="event-desc"  placeholder="Enter event description" type="text"> 
+                </div>
+                <div class="inp-grp">
+                    <input name="event-date" placeholder="Select date" type="date">
+                </div>
+                <div class="inp-grp" >
+                    <input name="file" style="padding-top: 10px;" placeholder="Choose an image" type="file">
+                </div>
+                <div class="inp-btn">
+                   <button>SAVE</button>
+                </div>
+            </div>
+        </form>
+               
+          </div>
+
+
+         
+      </div>
+        
+      </div>
+    </div>
+    <!-- <div class="more">
+       <div class="sec2">
+
+       </div>
+    </div> -->
+  </body>
+</html>
