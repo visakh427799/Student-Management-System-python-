@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session,jsonify
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
+from werkzeug.utils import secure_filename
+import os
 import re
 
 
@@ -14,6 +16,10 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'student_management_system'
+
+UPLOAD_FOLDER = './static/styles/Admin/images/events'
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Intialize MySQL
 mysql = MySQL(app)
@@ -34,7 +40,10 @@ def index():
 def adminLogin():
     #if login route is of method get
     if request.method=="GET":
-     return render_template('Admin/adminLogin.html')
+        if 'adminloggedin' in session:
+          return redirect(url_for('dashboard'))
+        else:     
+          return render_template('Admin/adminLogin.html')
     else:
     #login route post method
       #print(mysql)
@@ -45,7 +54,7 @@ def adminLogin():
       result=cursor.execute(query,(username,password));
       account = cursor.fetchone()
       if account:
-       session['adminloggedin'] = True
+       session['adminloggedin'] =True
        return jsonify({'status':True})
        #return render_template('Admin/dashboard.html')
       else:
@@ -63,24 +72,30 @@ def dashboard():
     if 'adminloggedin' in session:
       query='select * from admin'
       query2='select count(id) as total from students'
+      query3='select count(id) as total1 from faculties'
       cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
       result=cursor.execute(query);
       account = cursor.fetchone()
       result2=cursor.execute(query2);
       totalStudents = cursor.fetchone()
+      result3=cursor.execute(query3);
+      totalFaculties = cursor.fetchone()
       print(account)
      
-      return render_template('Admin/dashboard.html',account=account,totalStudents=totalStudents)
+      return render_template('Admin/dashboard.html',account=account,totalStudents=totalStudents,totalFaculties=totalFaculties)
     else:
       return redirect(url_for('adminLogin'))
 
 @app.route('/admin/students', methods=['GET'])
 def students():
     query='select * from students'
+    query2='select count(id) as total from students'
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     result=cursor.execute(query);
     allstudents = cursor.fetchall()
-    return render_template('Admin/students.html',allstudents=allstudents)
+    result2=cursor.execute(query2);                 
+    totalStudents = cursor.fetchone()
+    return render_template('Admin/students.html',allstudents=allstudents,totalStudents=totalStudents)
 
 @app.route('/admin/studentProfile/<id>/<roll>', methods=['GET'])
 def studentProfile(id,roll):
@@ -90,6 +105,14 @@ def studentProfile(id,roll):
    result=cursor.execute(query,(id,roll));
    account = cursor.fetchone()
    return render_template('Admin/studentProfile.html',account=account)
+@app.route('/admin/facultyProfile/<id>/<f_id>', methods=['GET'])
+def facultyProfile(id,f_id):
+   query='select * from faculties where id=%s and faculty_id=%s'
+   cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+   result=cursor.execute(query,(id,f_id));
+   account = cursor.fetchone()
+   return render_template('Admin/facultyProfile.html',account=account)
+
 
 @app.route('/admin/editStudentProfile/<id>/<roll>', methods=['GET'])
 def editStudentProfile(id,roll):
@@ -99,6 +122,7 @@ def editStudentProfile(id,roll):
    result=cursor.execute(query,(id,roll));
    account = cursor.fetchone()
    return render_template('Admin/editStudentProfile.html',account=account)
+
 
 @app.route('/admin/editStudentProfile',methods=['POST'])
 def editSprofile():
@@ -114,7 +138,9 @@ def editSprofile():
     batch=request.form['bat']
     propic=request.files['file'].filename
     sid=request.form['stid']
-    print(course)
+    if not propic:
+      propic=request.form['previmg']
+    print(propic)
     query='UPDATE `students` SET `admission_number`=%s,`fname`=%s ,`gender`=%s,`dob`=%s,`religion`=%s, `phone`=%s,`address`=%s,`email`=%s,`course`=%s,`batch`=%s,`profile_img`=%s WHERE `id` =%s;'
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     result=cursor.execute(query,(admission,fname,gender,dob,religion,phone,address,email,course,batch,propic,sid))
@@ -126,7 +152,11 @@ def editSprofile():
 
 @app.route('/admin/faculties', methods=['GET'])
 def faculties():
-    return render_template('Admin/faculties.html')
+    query='select * from faculties'
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    result=cursor.execute(query)
+    faculty = cursor.fetchall()
+    return render_template('Admin/faculties.html',faculty=faculty)
 
 @app.route('/admin/events',methods=['GET'])
 def adminEvents():
@@ -145,7 +175,9 @@ def addEvents():
      event_name=request.form['event-name'] 
      event_desc=request.form['event-desc'] 
      event_dte=request.form['event-date']
+     f=request.files['file']
      event_img=request.files['file'].filename
+     f.save(os.path.join(app.config['UPLOAD_FOLDER'], event_img))
      event_id='2';
      print(event_desc)
      print(event_name)
@@ -165,16 +197,35 @@ def addEvents():
 
 @app.route('/admin/cancelevent', methods=['POST'])
 def cancelEvent():
-    event_id=request.form['id']
-    print(event_id)
-    query="delete from events where event_id=%s"
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    result=cursor.execute(query,(event_id));
+    id=request.form['id']
+    print(id)
+    query='DELETE FROM events WHERE event_id=%s'
+    cursor = mysql.connection.cursor()
+    result=cursor.execute(query,(id));
+    mysql.connection.commit()
     if result:
        return jsonify({'status':True})
 
 
-    
+@app.route('/admin/deletestudent', methods=['POST'])
+def deleteStudent():
+    s_id=request.form['id']
+    print(s_id)
+    cursor =mysql.connection.cursor()
+    result=cursor.execute('DELETE FROM students WHERE admission_number=%s',(s_id,))
+    mysql.connection.commit()
+    if result:
+       return jsonify({'status':True})
+
+@app.route('/admin/approve', methods=['POST'])
+def approveStudent():
+    s_id=request.form['id']
+    print(s_id)
+    cursor =mysql.connection.cursor()
+    result=cursor.execute('UPDATE students SET approval=%s where admission_number=%s',('1',s_id,))
+    mysql.connection.commit()
+    if result:
+       return jsonify({'status':True})
     
 #user routes
 

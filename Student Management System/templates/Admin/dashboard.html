@@ -9,7 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-   
+   <style>
+       .right .lower{
+         margin-top:-10px;
+       }
+       .content .left{
+         height:450px;
+       }
+   </style>
 </head>
 <body>
     <div class="nav">
@@ -23,7 +30,7 @@
     <div class="content">
         <div class="left" ">
           <ul class="list">
-              <li style="padding-top:30px;"><a style=" color: white;text-decoration: none;" href="/">DASHBOARD</a></li>
+              <li style="padding-top:30px;"><a style=" color: white;text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
               <li style="padding-top:30px;"> <a style=" color: white;text-decoration: none;" href="/admin/students"> Students</a></li>
               <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
               <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;" href="/"> Attendance</a></li>
@@ -40,8 +47,8 @@
             <div class="upper">
               <div class="card1"><h4><a href="/admin/students">Total Students</a> </h4><p>{{totalStudents.total}}</p>
             </div>
-              <div class="card2"><h4>Total Faculties</h4> <p>10</p></div>
-              <div class="card3"><h4>Total Students</h4> <p>10</p></div>
+              <div class="card2"><h4><a href="/admin/faculties">Total Faculties</a></h4> <p>{{totalFaculties.total1}}</p></div>
+              <div class="card3"><h4>Total Batches</h4> <p>1</p></div>
              
             </div>
 

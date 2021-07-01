@@ -5,7 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../../static/styles/Admin/students.css" />
+    
+      <link rel='stylesheet' type='text/css' media='screen' href='../../static/styles/Admin/students.css'>
+<link
+      rel="stylesheet"
+      type="text/css"
+
+      media="screen"
+      href="{{ url_for('static',filename='/../../static/styles/Admin/students.css') }}"
+
+      
+    />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Sans+Pro:wght@300;400&display=swap"
@@ -16,6 +26,24 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
     <script src="main.js"></script>
+    <style>
+    .right .tab .box .student {
+     
+  margin: 6px 10px;}
+  .right .tab .box .student .name {
+  margin: 15px 10px;
+}
+.right .tab .bar {
+  height: 50px;
+  background-color: #2c2857;
+}
+.right .tab .box .student .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 60px;
+  border: 3px solid #670dc2;
+}
+    </style>
   </head>
   <body>
     <div class="nav">
@@ -28,30 +56,34 @@
     <div class="content">
       <div class="left">
         <ul class="list">
-          <li><a>DASHBOARD</a></li>
-          <li><a> Students</a></li>
-          <li><a>Faculties</a></li>
-          <li><a> Attendance</a></li>
-          <li><a> Marks</a></li>
-          <li><a> Events</a></li>
+            <li ><a style=" color: white;text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+            <li > <a style=" color: white;text-decoration: none;" href="/admin/students"> Students</a></li>
+            <li ><a style=" color: white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
+            <li ><a style=" color: white;text-decoration: none;" href="/"> Attendance</a></li>
+            <li ><a style=" color: white;text-decoration: none;"> Marks</a></li>
+            <li ><a style=" color: white;text-decoration: none;" href="/admin/events"> Events</a></li>
+            <li ><a style=" color: white;text-decoration: none;"> Account </a></li>
+            <li ><a style=" color: white;text-decoration: none;"> Add student </a></li>
         </ul>
       </div>
       <div class="right">
         <div class="tab">
             <div class="bar">
-                <h3>S4 MCA  <span>22</span></h3>
+                <h3>S4 MCA  <span> &nbsp {{totalStudents.total}} &nbsp </span></h3>
                
             </div>
           <div class="box">
-              {%for student in allstudents%}
-                 <a href='/admin/studentProfile/{{student.id}}/{{student.admission_number}}''>
-                <div class="student">
-                    <div class="avatar" style=" background-color: rgb(246, 69, 99);"><img src="https://scontent.fcok10-1.fna.fbcdn.net/v/t1.6435-9/156949511_991504107922524_2211174629330389025_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=kpaKI8E3UogAX_UQLTZ&_nc_ht=scontent.fcok10-1.fna&oh=2ae9a3f908d1eae46195d890369b7b5a&oe=60D110B7"/></div>
-                    <div class="name">{{student.fname}}</div>
-                </div>
-                </a>
-                {% endfor %}
+                 
+                {%for student in allstudents%}
                 
+                <div class="student">
+                    <div class="avatar" > <img src='/../../static/styles/Admin/images/students/{{student.profile_img}}'/></div>
+                    <div class="name"> <a href='/admin/studentProfile/{{student.id}}/{{student.admission_number}}' style="text-decoration:none">{{student.fname}} </a></div>
+                </div>
+               
+                {% endfor %}
+               
+                    
           </div>
         </div>
       </div>

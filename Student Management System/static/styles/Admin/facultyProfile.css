@@ -169,10 +169,10 @@
 .right .tab .box .actions .btns button {
   border-style: hidden;
   width: 150px;
-  height: 40px;
-  background-color: #7a34bb;
+  height: 30px;
+  background-color: #6b4d86;
   color: white;
-  border-radius: 25px;
+  border-radius: 12;
   font-size: 15px;
 }
 

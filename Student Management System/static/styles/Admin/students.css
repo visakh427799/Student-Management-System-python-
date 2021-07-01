@@ -91,7 +91,7 @@
 
 .right .tab .bar {
   height: 50px;
-  background-color: #7364ff;
+  background-color: #2c2857;
 }
 
 .right .tab .bar h3 {
@@ -101,12 +101,13 @@
 }
 
 .right .tab .bar h3 span {
-  background-color: #f389ac;
-  width: 50px;
-  height: 30px;
-  border-radius: 10px;
-  font-size: 20px;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  font-size: 16px;
   font-weight: lighter;
+  color: #031729;
 }
 
 .right .tab .box {
@@ -120,7 +121,7 @@
 }
 
 .right .tab .box .student {
-  margin: 5px 50px;
+  margin: 6px 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

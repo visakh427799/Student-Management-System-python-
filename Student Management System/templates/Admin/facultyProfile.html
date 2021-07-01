@@ -9,7 +9,7 @@
       rel="stylesheet"
       type="text/css"
       media="screen"
-      href="../../static/styles/Admin/facultyProfile.css"
+      href="/../../static/styles/Admin/facultyProfile.css"
     />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -21,6 +21,17 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
     <script src="main.js"></script>
+    <style>
+      .right .tab .box .actions .btns button {
+  border-style: hidden;
+  width: 150px;
+  height: 30px;
+  background-color: #6b4d86;
+  color: white;
+  
+  font-size: 15px;
+}
+    </style>
   </head>
   <body>
     <div class="nav">
@@ -33,19 +44,21 @@
     <div class="content">
       <div class="left">
         <ul class="list">
-          <li><a>DASHBOARD</a></li>
-          <li><a> Students</a></li>
-          <li><a>Faculties</a></li>
-          <li><a> Attendance</a></li>
-          <li><a> Marks</a></li>
-          <li><a> Events</a></li>
+          <li ><a style=" color: white;text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+          <li > <a style=" color: white;text-decoration: none;" href="/admin/students"> Students</a></li>
+          <li ><a style=" color: white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
+          <li ><a style=" color: white;text-decoration: none;" href="/"> Attendance</a></li>
+          <li ><a style=" color: white;text-decoration: none;"> Marks</a></li>
+          <li ><a style=" color: white;text-decoration: none;" href="/admin/events"> Events</a></li>
+          <li ><a style=" color: white;text-decoration: none;"> Account </a></li>
+          <li ><a style=" color: white;text-decoration: none;"> Add student </a></li>
         </ul>
       </div>
       <div class="right">
 
         <div class="tab">
           <div class="bar">
-              <h3>Liz george</h3>
+              <h3>{{account.faculty_name}}</h3>
              
           </div>
         <div class="box">
@@ -53,25 +66,25 @@
              <div  class="st-section1">
          
                       <div class="st-img">
-                          <img src="http://web.sjcetpalai.ac.in/wp-content/uploads/2017/12/MCA_LIZ-GERORGE-150x150.jpg"/>
+                        <img
+                        src="/../../static/styles/Admin/images/faculties/{{account.profile_img}}"
+                      />
                       </div>
                       <div class="st-info1">
                         
-                        <p>Admission No:  <span style="margin-left:10px;"></span> </p>
-                        <p>Faculty Name: <span style="margin-left:10px;">Liz george</span></p>
-                        <p>Gender: Female</p>
-                        <p>Date of birth : </p>
-                        <p>Religion : </p>
-                        <p>Phone No: </p>
+                        <p>Fcaulty ID:  <span style="margin-left:10px;">{{account.faculty_id}}</span> </p>
+                        <p>Faculty Name: <span style="margin-left:10px;"> {{account.faculty_name}}</span></p>
+                        <p>Gender: {{account.gender}}</p>
+                        <p>Date of birth : {{account.dob}}</p>
+                        <p>Religion : {{account.religion}}</p>
+                        <p>Phone No: {{account.phone}}</p>
                       
                       </div>
                       <div class="st-info2">
-                        <p>Address : </p>
-                        <p>Email:</p>
-                        <p>Course: MCA</p>
-                        <p>Batch : 2019-2022</p>
-                        <p>Admission No:</p>
-                       
+                        <p>Qualifications :{{account.qualifications}} </p>
+                        <p>Designation:{{account.designation}}</p>
+                        <p>Date_joined: {{account.date_joined}}</p>
+                        
                         
                     </div>
 

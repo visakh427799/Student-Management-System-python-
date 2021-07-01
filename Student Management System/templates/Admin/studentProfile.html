@@ -28,7 +28,7 @@
       .content .left {
   margin: 10px;
   width: 210px;
-  height: 400px;
+  height: 450px;
   background-color: #190761;
   border-radius: 10px;
 }
@@ -56,19 +56,21 @@
     <div class="content">
       <div class="left">
         <ul class="list">
-          <li><a>DASHBOARD</a></li>
-          <li><a> Students</a></li>
-          <li><a>Faculties</a></li>
-          <li><a> Attendance</a></li>
-          <li><a> Marks</a></li>
-          <li><a> Events</a></li>
+          <li ><a style=" color: white;text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+            <li > <a style=" color: white;text-decoration: none;" href="/admin/students"> Students</a></li>
+            <li ><a style=" color: white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
+            <li ><a style=" color: white;text-decoration: none;" href="/"> Attendance</a></li>
+            <li ><a style=" color: white;text-decoration: none;"> Marks</a></li>
+            <li ><a style=" color: white;text-decoration: none;" href="/admin/events"> Events</a></li>
+            <li ><a style=" color: white;text-decoration: none;"> Account </a></li>
+            <li ><a style=" color: white;text-decoration: none;"> Add student </a></li>
         </ul>
       </div>
       <div class="right">
 
         <div class="tab">
           <div class="bar">
-              <h3>Visakh T.S</h3>
+              <h3>{{account.fname}}</h3>
              
           </div>
         <div class="box">
@@ -76,7 +78,7 @@
              <div  class="st-section1">
          
                       <div class="st-img">
-                          <img src="https://icons-for-free.com/iconfiles/png/512/student+icon-1320184412790928936.png"/>
+                          <img src='/../../static/styles/Admin/images/students/{{account.profile_img}}'/>
                       </div>
                       <div class="st-info1">
                         
@@ -96,9 +98,9 @@
                         <p>Batch : {{account.batch}}</p>
                         <p>Profile approval status: 
                           {% if account.approval %}
-                            <span style="color:rgb(50, 158, 0) ;padding-left:20px">Approved</span></p>
+                            <span style="color:rgb(50, 158, 0) ;padding-left:20px">✅Approved</span></p>
                             {% else %}
-                            <span style="color:rgb(255, 32, 32)">Not Approved</span></p>
+                            <span style="color:rgb(255, 32, 32)" id="notap">❌Not Approved</span></p>
                       {% endif %}
                         
                         
@@ -110,9 +112,9 @@
                <div class="actions">
                 <div class="btns">
                   {% if account.approval %}
-                  <button disabled  style="background-color: rgb(158, 158, 158);" >APPROVED</button>
+                  <button disabled  style="background-color: rgb(158, 158, 158);"  >APPROVED</button>
                   {% else%}
-                  <button style="background-color: rgb(73, 172, 106);" >APPROVE</button>
+                  <button id="ap-btn" style="background-color: rgb(73, 172, 106);" onclick="approveStudent('{{account.admission_number}}')" >APPROVE</button>
                   
                   {% endif%}
                 </div>
@@ -120,7 +122,7 @@
                     <a href="/admin/editStudentProfile/{{account.id}}/{{account.admission_number}}"><button style="background-color: rgb(219, 151, 96);">EDIT</button></a>
                   </div>
                   <div class="btns">
-                    <button style="background-color: rgb(226, 84, 84);">DELETE</button>
+                    <button style="background-color: rgb(226, 84, 84);" onclick="deleteStudent('{{account.admission_number}}')">DELETE</button>
                   </div>
                   <div class="btns">
                     <button style="background-color: rgb(141, 88, 172);">MARKS</button>
@@ -142,5 +144,72 @@
 
        </div>
     </div> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script>
+      const deleteStudent=(id)=>{
+        let val= confirm("Do you want to delete this student");
+         if(val){
+          $.ajax({
+            data : {
+               id:id
+                   },
+               type : 'POST',
+               url : '/admin/deletestudent'
+              })
+          .done(function(data) {
+            if(data.status){
+               location.href="/admin/students"
+         
+            }
+            else{
+              
+               alert("Something went rong please try again")
+            }
+        });
+         }
+
+      }
+
+      const approveStudent=(id)=>{
+        let val= confirm("Are you sure ..?");
+         if(val){
+
+          let spn=document.getElementById("notap");
+          let btn=document.getElementById("ap-btn")
+
+          $.ajax({
+            data : {
+               id:id
+                   },
+               type : 'POST',
+               url : '/admin/approve'
+              })
+          .done(function(data) {
+            if(data.status){
+              Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'This profile has been approved',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+               spn.innerHTML="✅Approved"
+               spn.style.color="green"
+                btn.innerHTML="Approved";
+                btn.style.backgroundColor="grey"
+                btn.disabled=true;
+         
+            }
+            else{
+              
+               alert("Something went rong please try again")
+            }
+        });
+         }
+
+      }
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

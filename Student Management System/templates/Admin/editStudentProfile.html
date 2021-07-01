@@ -48,7 +48,7 @@
 
         <div class="tab">
           <div class="bar">
-              <h3>Visakh T.S</h3>
+              <h3>{{account.fname}}</h3>
              
           </div>
         <div class="box">
@@ -58,7 +58,7 @@
          
                       <div class="st-img">
                         
-                          <img id="pro-pic" src="{{account.profile_img}}"/>
+                        <img id="pro-pic"src='/../../static/styles/Admin/images/students/{{account.profile_img}}'/>
                           <div class="edit-btn">
                             <button><input  id="newSrc" onchange="imagePreview(event)" name="file" type="file"> </button>
                         </div>
@@ -66,6 +66,7 @@
                       
                       <div class="st-info1">
                         <input type="hidden" name="stid" value={{account.id}}>
+                        <input type="hidden" name="previmg" value={{account.profile_img}}
                         <label>Student name</label>
                          <div class="inp-grp">
                              <input required name="fname" value='{{account.fname}}' placeholder="Enter student name" type="text"> 
