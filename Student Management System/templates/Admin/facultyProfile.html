@@ -44,14 +44,13 @@
     <div class="content">
       <div class="left">
         <ul class="list">
-          <li ><a style=" color: white;text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
-          <li > <a style=" color: white;text-decoration: none;" href="/admin/students"> Students</a></li>
-          <li ><a style=" color: white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
-          <li ><a style=" color: white;text-decoration: none;" href="/"> Attendance</a></li>
-          <li ><a style=" color: white;text-decoration: none;"> Marks</a></li>
-          <li ><a style=" color: white;text-decoration: none;" href="/admin/events"> Events</a></li>
-          <li ><a style=" color: white;text-decoration: none;"> Account </a></li>
-          <li ><a style=" color: white;text-decoration: none;"> Add student </a></li>
+          <li style="padding-top:30px;"><a style=" color: white;text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+          <li style="padding-top:0px;"> <a style=" color: white;text-decoration: none;" href="/admin/students"> Students</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/enter_attendance"> Attendance</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;"> Marks</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/events"> Events</a></li>
+
         </ul>
       </div>
       <div class="right">
@@ -84,20 +83,25 @@
                         <p>Qualifications :{{account.qualifications}} </p>
                         <p>Designation:{{account.designation}}</p>
                         <p>Date_joined: {{account.date_joined}}</p>
-                        
-                        
+                        <p>Email: {{account.email}}</p>
+                        <!-- <p>Profile approval status: 
+                          {% if account.approval %}
+                            <span style="color:rgb(50, 158, 0) ;padding-left:20px">✅Approved</span></p>
+                            {% else %}
+                            <span style="color:rgb(255, 32, 32)" id="notap">❌Not Approved</span></p>
+                      {% endif %} -->
                     </div>
 
                </div>
                <div class="actions">
                   <div class="btns">
-                       <button>EDIT</button>
+                    <a href="/admin/editFacultyProfile/{{account.id}}/{{account.faculty_id}}"> <button>EDIT</button></a>
                   </div>
                   <div class="btns">
                     <button>DELETE</button>
                   </div>
                   <div class="btns">
-                    <button>MARKS</button>
+                    <button>APPROVE</button>
                   </div>
                   <div class="btns">
                     <button>ATTENDANCE</button>

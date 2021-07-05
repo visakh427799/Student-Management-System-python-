@@ -21,7 +21,7 @@
 <body>
     <div class="nav">
         <div class="nav-brand">
-           <h3>ADMIN</h3>
+           <h3>A<span style="color: rgb(98, 204, 12);">D</span>MIN</h3>
          
         </div>
         <a href="/admin/logout"><h4>Logout</h4></a>
@@ -30,14 +30,14 @@
     <div class="content">
         <div class="left" ">
           <ul class="list">
-              <li style="padding-top:30px;"><a style=" color: white;text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
-              <li style="padding-top:30px;"> <a style=" color: white;text-decoration: none;" href="/admin/students"> Students</a></li>
-              <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
-              <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;" href="/"> Attendance</a></li>
-              <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;"> Marks</a></li>
-              <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;" href="/admin/events"> Events</a></li>
-              <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;"> Account </a></li>
-              <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;"> Add new student </a></li>
+              <li style="padding-top:30px;"><a style=" color: rgb(98, 204, 12);text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+              <li style="padding-top:30px;"> <a style=" color: white;text-decoration: none;" href="/admin/students"> 👨🏻‍🎓 Students</a></li>
+              <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;" href="/admin/faculties">👨🏼‍🏫 Faculties</a></li>
+              <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;" href="/admin/enter_attendance">📅 Attendance</a></li>
+              <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;" href=""> ✅ Marks</a></li>
+              <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;" href="/admin/events"> 🎉 Events</a></li>
+              <li style="padding-top:20px;"><a style=" color: white;text-decoration: none;"> ⚙️ Account </a></li>
+          
 
           </ul>
           </ul>
@@ -45,9 +45,9 @@
         <div class="right">
 
             <div class="upper">
-              <div class="card1"><h4><a href="/admin/students">Total Students</a> </h4><p>{{totalStudents.total}}</p>
+              <div class="card1"><h4><a href="/admin/students">👩🏾‍🤝‍👩🏻Total Students</a> </h4><p>{{totalStudents.total}}</p>
             </div>
-              <div class="card2"><h4><a href="/admin/faculties">Total Faculties</a></h4> <p>{{totalFaculties.total1}}</p></div>
+              <div class="card2"><h4><a href="/admin/faculties">👩‍🏫Total Faculties</a></h4> <p>{{totalFaculties.total1}}</p></div>
               <div class="card3"><h4>Total Batches</h4> <p>1</p></div>
              
             </div>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="info">
                    <h1>{{account.name}}</h1>
-                  <p>
+                  <p style="line-height: 2rem;">
                     {{account.designation}}<br>
                     {{account.department}}<br>
                     Mobile Number   : +91 {{account.mobile_number}}<br>
@@ -80,5 +80,6 @@
         </div>
     </div>
     
+    <p style="text-align: center;color:rgb(170, 170, 170) ; padding-top:100px; padding-bottom: 100px;">Made with ❤️ by s4 mca students sjcet palai</p>
 </body>
 </html>

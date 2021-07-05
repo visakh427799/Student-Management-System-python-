@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+    rel="stylesheet"
+    type="text/css"
+
+    media="screen"
+    href="{{ url_for('static',filename='/../../static/styles/Admin/addAttendance.css') }}"
+
+    
+  />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Sans+Pro:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+   
+  </head>
+  <body>
+    <div class="nav">
+      <div class="nav-brand">
+        <h3>ADMIN</h3>
+      </div>
+      <h4>Logout</h4>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <ul >
+          <li style="padding-top:10px;"><a style=" color: rgb(255, 255, 255);text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+          <li style="padding-top:0px;"> <a style=" color: white;text-decoration: none;" href="/admin/students"> 👨🏻‍🎓 Students</a></li>
+          <li style="padding-top:0px;"><a style=" color: rgb(255, 255, 255);text-decoration: none;" href="/admin/faculties">👨🏼‍🏫 Faculties</a></li>
+          <li style="padding-top:0px;"><a style=" color: rgb(18, 207, 49);text-decoration: none;" href="/admin/enter_attendance">📅 Attendance</a></li>
+          <li style="padding-top:0px;"><a style=" color: rgb(255, 255, 255);text-decoration: none;"> ✅ Marks</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/events"> 🎉 Events</a></li>
+         
+      </ul>
+      </div>
+      <div class="right">
+
+        <div class="tab">
+          <div class="bar">
+            <div style="display: flex;flex-direction: row;">
+              <h3>Enter Attendance</h3>
+
+              <div class="inp-grp">
+                <select  name="rel" class="select" style="width:130px;">
+                  <option value="Hindu">S2</option>
+                  <option value="Christian">S4</option>
+                  <option value="Christian">S6</option>
+                </select>
+                </select>
+              </div>
+             
+            </div>
+          </div>
+        <div class="box">
+          <form action="/admin/enter_attendance" method="POST">  
+          <div class="dt">
+            <label>SELECT DATE</label>
+            <div class="inp-grp">
+            <input required name="dte" placeholder="Select your date" type="date"> 
+            </div>
+          </div>
+         
+              <table >
+                <thead>
+                <td>NAME</td>
+                <td>ADM</td>
+                <td>BIA</td>
+                <td>ML</td>
+                <td>MC</td>
+                <td>BD</td>
+                <td>LAB</td>
+               
+                </thead>
+                <tbody>
+             
+
+             {% for student in students%}
+
+             <tr>
+              <td style="color: rgb(83, 83, 83);">{{student.fname}}</td>
+              <td style="color: green;"> <input name="ADM_{{student.id}}" type="checkbox" value="1" ></td>
+              <td style="color: rgb(230, 22, 22);"><input name="BIA_{{student.id}}" type="checkbox" value="1"  ></td>
+              <td style="color: green;"><input name="ML_{{student.id}}" type="checkbox" value="1"></td>
+              <td style="color: green;"><input name="MC_{{student.id}}" type="checkbox" value="1"></td>
+              <td style="color: green;"><input name="BD_{{student.id}}" type="checkbox" value="1"></td>
+              <td style="color: green;"><input name="LAB_{{student.id}}" type="checkbox" value="1" ></td>
+              
+            </tr>
+           
+              {%endfor%}
+
+
+
+                 
+              
+                </tbody>
+              </table>  
+              <div class="actions">
+                <button>SUBMIT</button>
+              </div>
+            </form>
+      </div>
+    </div>
+    </div>
+    <!-- <div class="more">
+       <div class="sec2">
+
+       </div>
+    </div> -->
+    <script>
+        
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

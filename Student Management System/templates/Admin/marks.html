@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+    rel="stylesheet"
+    type="text/css"
+
+    media="screen"
+    href="{{ url_for('static',filename='/../../static/styles/Admin/marks.css') }}"
+
+    
+  />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Sans+Pro:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+   <style>
+     .content .left li{
+       font-size:17px;
+     }
+     .right .tab .box table td {
+  width: 150px;
+  height: 50px;
+  border: 0.5px solid #dddcdc;
+  text-align: center;
+  color: #b4b4b4;
+}
+.right .tab .box table{
+  max-width: 95%;
+}
+
+   </style>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="nav-brand">
+        <h3>ADMIN</h3>
+      </div>
+      <h4>Logout</h4>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <ul >
+          <li style="padding-top:10px;"><a style=" color: rgb(255, 255, 255);text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+          <li style="padding-top:0px;"> <a style=" color: white;text-decoration: none;" href="/admin/students"> 👨🏻‍🎓 Students</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/faculties">👨🏼‍🏫 Faculties</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/enter_attendance">📅 Attendance</a></li>
+          <li style="padding-top:0px;"><a style=" color: rgb(21, 185, 70);text-decoration: none;"> ✅ Marks</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/events"> 🎉 Events</a></li>
+         
+      </ul>
+      </div>
+      <div class="right">
+
+        <div class="tab">
+          <div class="bar">
+            <div style="display: flex;flex-direction: row;">
+              <h3>🎓Progress report</h3>
+
+              <div class="inp-grp">
+                <select  name="rel" class="select" style="width:130px;">
+                  <option value="Hindu">S2</option>
+                  <option value="Christian">S4</option>
+                  <option value="Christian">S6</option>
+                </select>
+                </select>
+              </div>
+
+              <h4 style="margin-left:400px;margin-top:20px;color: white;">📥Download pdf</h4>
+            
+            </div>
+          </div>
+        <div class="box">
+          
+          {% if mark %}
+         
+              <table >
+                <thead>
+                <td>SUBJECT</td>
+                <td>IAE1</td>
+                <td>IAE2</td>
+                <td>ASSIGNMENT 1</td>
+                <td>ASSIGNMENT 2</td>
+                <td>SEM</td>
+                <td>TOTAL</td>
+               
+               
+                </thead>
+                <tbody>
+                  {%for i in mark%}
+                 <tr >
+                    
+                    <td style="color: rgb(83, 83, 83);">{{i.subject}}</td>
+                    <td style="color: rgb(83, 83, 83);">{{i.IAE1}}</td>
+                    <td style="color: rgb(83, 83, 83);">{{i.IAE2}}</td>
+                    <td style="color: rgb(83, 83, 83);">{{i.ASS_1}}</td>
+                    <td style="color: rgb(83, 83, 83);">{{i.ASS_2}}</td>
+                    <td style="color: rgb(83, 83, 83);">{{i.sem}}</td>
+                    <td style="color: rgb(83, 83, 83);">{{i.TOTAL}}</td>
+                    
+
+               </tr>
+              {%endfor%}
+                </tbody>
+              </table>  
+              {%else%}
+
+              <h3 style="text-align: center;">No marks to show</h3>
+            {%endif%}
+      </div>
+    </div>
+    </div>
+    <!-- <div class="more">
+       <div class="sec2">
+
+       </div>
+    </div> -->
+    <script>
+        const submitAttendance=()=>{
+            Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Attendance has been added',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

@@ -21,6 +21,32 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
     <script src="main.js"></script>
+    <style>
+      .right .tab {
+        margin-left:-20px;
+      }
+      .right .tab .box{
+        width:990px;
+        background-color: #fff;
+      }
+      .right .tab .box .facul {
+        width:300px;
+        margin-left:10px;
+      }
+      .content .left {
+        width: 210px;
+      }
+      .content a:hover {
+  background-color: #7364ff;
+  border-radius: 5px;
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+  color:white;
+}
+.content .left li{
+       font-size:15px;
+     }
+    </style>
   </head>
   <body>
     <div class="nav">
@@ -32,16 +58,15 @@
 
     <div class="content">
       <div class="left">
-        <ul class="list">
-          <li ><a style=" color: white;text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
-          <li > <a style=" color: white;text-decoration: none;" href="/admin/students"> Students</a></li>
-          <li ><a style=" color: white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
-          <li ><a style=" color: white;text-decoration: none;" href="/"> Attendance</a></li>
-          <li ><a style=" color: white;text-decoration: none;"> Marks</a></li>
-          <li ><a style=" color: white;text-decoration: none;" href="/admin/events"> Events</a></li>
-          <li ><a style=" color: white;text-decoration: none;"> Account </a></li>
-          <li ><a style=" color: white;text-decoration: none;"> Add student </a></li>
-        </ul>
+        <ul >
+          <li style="padding-top:10px;"><a style=" color: rgb(255, 255, 255);text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+          <li style="padding-top:0px;"> <a style=" color: white;text-decoration: none;" href="/admin/students"> 👨🏻‍🎓Students</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/faculties">👨🏼‍🏫Faculties</a></li>
+          <li style="padding-top:0px;"><a style=" color: rgb(19, 226, 81);text-decoration: none;" href="/admin/enter_attendance">📅Attendance</a></li>
+          <li style="padding-top:0px;"><a style=" color: rgb(255, 255, 255);text-decoration: none;"> ✅Marks</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/events"> 🎉Events</a></li>
+         
+      </ul>
       </div>
       <div class="right">
         <div class="tab">

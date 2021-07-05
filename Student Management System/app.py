@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session,js
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 from werkzeug.utils import secure_filename
+from datetime import datetime
 import os
 import re
 
@@ -17,9 +18,13 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'student_management_system'
 
-UPLOAD_FOLDER = './static/styles/Admin/images/events'
+UPLOAD_FOLDER_EVENTS = './static/styles/Admin/images/events'
+UPLOAD_FOLDER_STUDENTS = './static/styles/Admin/images/students'
+UPLOAD_FOLDER_FACULTY = './static/styles/Admin/images/faculties'
 
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER_EVENTS'] = UPLOAD_FOLDER_EVENTS
+app.config['UPLOAD_FOLDER_STUDENT'] = UPLOAD_FOLDER_STUDENTS
+app.config['UPLOAD_FOLDER_FACULTY'] = UPLOAD_FOLDER_FACULTY
 
 # Intialize MySQL
 mysql = MySQL(app)
@@ -122,6 +127,14 @@ def editStudentProfile(id,roll):
    result=cursor.execute(query,(id,roll));
    account = cursor.fetchone()
    return render_template('Admin/editStudentProfile.html',account=account)
+@app.route('/admin/editFacultyProfile/<id>/<f_id>', methods=['GET'])
+def editFacultyProfile(id,f_id):
+   print(id,f_id)
+   query='select * from faculties where id=%s and faculty_id=%s'
+   cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+   result=cursor.execute(query,(id,f_id));
+   account = cursor.fetchone()
+   return render_template('Admin/editFacultyProfile.html',account=account)   
 
 
 @app.route('/admin/editStudentProfile',methods=['POST'])
@@ -136,10 +149,17 @@ def editSprofile():
     dob=request.form['dob']
     course=request.form['cor']
     batch=request.form['bat']
+    f=request.files['file']
     propic=request.files['file'].filename
+    if f:
+        f.save(os.path.join(app.config['UPLOAD_FOLDER_STUDENT'], propic))
     sid=request.form['stid']
     if not propic:
       propic=request.form['previmg']
+    else:
+        filePath=os.path.join(app.config['UPLOAD_FOLDER_STUDENT'], request.form['previmg'])
+        if os.path.exists(filePath):
+         os.remove(filePath)  
     print(propic)
     query='UPDATE `students` SET `admission_number`=%s,`fname`=%s ,`gender`=%s,`dob`=%s,`religion`=%s, `phone`=%s,`address`=%s,`email`=%s,`course`=%s,`batch`=%s,`profile_img`=%s WHERE `id` =%s;'
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -149,6 +169,39 @@ def editSprofile():
           return redirect(url_for('studentProfile',id=sid,roll=admission))
     else:
           return redirect(url_for('editStudentProfile',id=sid,roll=admission))
+@app.route('/admin/editFacultyProfile',methods=['POST'])
+def editFprofile():
+    fname=request.form['fname']
+    f_id=request.form['fid']
+    phone=request.form['pho']
+    email=request.form['ema']
+    gender=request.form['gen']
+    religion=request.form['rel']
+    department=request.form['dep']
+    dob=request.form['dob']
+    daj=request.form['daj']
+    designation=request.form['des']
+    qualifications=request.form['qua']
+    f=request.files['file']
+    propic=request.files['file'].filename
+    fcid=request.form['fcid']
+    if f:
+        f.save(os.path.join(app.config['UPLOAD_FOLDER_FACULTY'], propic))
+    if not propic:
+      propic=request.form['previmg']
+    else:
+      filePath=os.path.join(app.config['UPLOAD_FOLDER_FACULTY'], request.form['previmg'])
+      if os.path.exists(filePath):
+         os.remove(filePath)
+    print(propic)
+    query='UPDATE `faculties` SET `faculty_name`=%s,`designation`=%s ,`department`=%s,`phone`=%s,`email`=%s, `qualifications`=%s,`gender`=%s,`religion`=%s,`dob`=%s,`date_joined`=%s,`faculty_id`=%s,`profile_img`=%s WHERE `id` =%s;'
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    result=cursor.execute(query,(fname,designation,department,phone,email,qualifications,gender,religion,dob,daj,f_id,propic,fcid))
+    mysql.connection.commit()
+    if result:
+          return redirect(url_for('facultyProfile',id=fcid,f_id=f_id))
+    else:
+          return redirect(url_for('editFacultyProfile',id=fcid,f_id=f_id))
 
 @app.route('/admin/faculties', methods=['GET'])
 def faculties():
@@ -167,6 +220,58 @@ def adminEvents():
     print(events)
     return render_template('Admin/events.html',events=events)
 
+@app.route('/admin/view_attendance/<s_id>/<ad_id>',methods=['GET'])
+def viewAttendance(s_id,ad_id):
+    query='select * from attendance where student_id=%s and attendance_date=%s'
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    result=cursor.execute(query,(s_id,'2021-07-05'))
+    att= cursor.fetchall()
+    print(len(att))
+    att_dict={"ADM":0,'BIA':0,'ML':0,"MC":0,"BD":0}
+    for key in att_dict:
+        for i in att:
+            if key==i['subject']:
+             att_dict.update({key:1})
+    print(att_dict)
+    return render_template('Admin/attendance.html',att_dict=att_dict)
+
+@app.route('/admin/enter_attendance',methods=['GET'])
+def enterAttendance():
+    query='select * from students'
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    result=cursor.execute(query)
+    students = cursor.fetchall()
+    return render_template('Admin/addAttendance.html',students=students)
+@app.route('/admin/enter_attendance',methods=['POST'])
+def addAttendance():
+    print(request.form)
+    a_date=request.form['dte']
+    student_attendances=[]
+    for i in request.form:
+        if i!="dte":
+            sub_split=i.split('_')
+            sub=sub_split[0]
+            student_id=sub_split[1]
+            att_status='1' if request.form[i]=='1' else '0';
+           
+            query='INSERT INTO `attendance` (`attendance_date`, `student_id`, `subject`,`status`) VALUES (%s,%s,%s,%s)'
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            result=cursor.execute(query,(a_date,student_id,sub,att_status))
+            print('done')
+            mysql.connection.commit()
+    return redirect(url_for('students'))
+
+@app.route('/admin/view_marks/<s_id>/<ad_id>',methods=['GET'])
+def viewMarks(s_id,ad_id): 
+    print(ad_id)
+    query='select * from marks where student_id=%s and sem=%s'
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    result=cursor.execute(query,(ad_id,'s4'))
+    mark = cursor.fetchall()
+    print(mark)
+    return render_template('Admin/marks.html',mark=mark) 
+
+  
 @app.route('/admin/addevent', methods=['GET','POST'])
 def addEvents():
     if request.method=="GET":

@@ -24,6 +24,11 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
     <script src="main.js"></script>
+    <style>
+    .right .tab .bar  {
+        background-color: rgb(41, 17, 71);
+      }
+    </style>
   </head>
   <body>
     <div class="nav">
@@ -36,35 +41,36 @@
     <div class="content">
       <div class="left">
         <ul class="list">
-          <li><a>DASHBOARD</a></li>
-          <li><a> Students</a></li>
-          <li><a>Faculties</a></li>
-          <li><a> Attendance</a></li>
-          <li><a> Marks</a></li>
-          <li><a> Events</a></li>
+          <li style="padding-top:30px;"><a style=" color: white;text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+          <li style="padding-top:0px;"> <a style=" color: white;text-decoration: none;" href="/admin/students"> Students</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/enter_attendance"> Attendance</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;"> Marks</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/events"> Events</a></li>
+
         </ul>
       </div>
       <div class="right">
 
         <div class="tab">
           <div class="bar">
-              <h3>ADD NEW EVENT</h3>
+              <h3>📅 SCHEDULE NEW EVENT</h3>
              
           </div>
         <div class="box">
             <form action="/admin/addevent" method="POST"  enctype = "multipart/form-data">
             <div class="event-form">
                 <div class="inp-grp">
-                   <input name="event-name" placeholder="Enter event name" type="text">
+                   <input required name="event-name" placeholder="Enter event name" type="text">
                 </div>
                 <div class="inp-grp">
-                    <input name="event-desc"  placeholder="Enter event description" type="text"> 
+                    <input required name="event-desc"  placeholder="Enter event description" type="text"> 
                 </div>
                 <div class="inp-grp">
-                    <input name="event-date" placeholder="Select date" type="date">
+                    <input required name="event-date" placeholder="Select date" type="date">
                 </div>
                 <div class="inp-grp" >
-                    <input name="file" style="padding-top: 10px;" placeholder="Choose an image" type="file">
+                    <input required name="file" style="padding-top: 10px;" placeholder="Choose an image" type="file">
                 </div>
                 <div class="inp-btn">
                    <button>SAVE</button>

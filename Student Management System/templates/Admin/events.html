@@ -95,27 +95,28 @@ i:hover{
 
     <div class="content">
       <div class="left">
-        <ul class="list">
-          <li ><a style=" color: white;text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
-            <li > <a style=" color: white;text-decoration: none;" href="/admin/students"> Students</a></li>
-            <li ><a style=" color: white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
-            <li ><a style=" color: white;text-decoration: none;" href="/"> Attendance</a></li>
-            <li ><a style=" color: white;text-decoration: none;"> Marks</a></li>
-            <li ><a style=" color: white;text-decoration: none;" href="/admin/events"> Events</a></li>
-            <li ><a style=" color: white;text-decoration: none;"> Account </a></li>
-            <li ><a style=" color: white;text-decoration: none;"> Add student </a></li>
-        </ul>
+        <ul >
+          <li style="padding-top:10px;"><a style=" color: rgb(255, 255, 255);text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+          <li style="padding-top:0px;"> <a style=" color: white;text-decoration: none;" href="/admin/students"> 👨🏻‍🎓 Students</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/faculties">👨🏼‍🏫 Faculties</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/enter_attendance">📅 Attendance</a></li>
+          <li style="padding-top:0px;"><a style=" color: rgb(255, 255, 255);text-decoration: none;"> ✅ Marks</a></li>
+          <li style="padding-top:0px;"><a style=" color: rgb(13, 218, 30);text-decoration: none;" href="/admin/events"> 🎉 Events</a></li>
+         
+      </ul>
       </div>
-      <div class="right">
+      <div class="right" >
 
-        <div class="tab">
+        <div class="tab"  >
           <div class="bar">
-              <h3>EVENTS</h3>
-             <a href="/admin/addevent" ><button>ADD EVENT</button></a>
+              <h3>🎉 EVENTS</h3>
+              {% if events%}<a href="/admin/addevent" ><button>ADD EVENT</button></a>{%endif%}
              
           </div>
-        <div class="box">
+        <div class="box" >
+          {% if events%}
             <div class="events">
+
               {%for event in events %}
                 <div class="event-card">
                  
@@ -129,9 +130,17 @@ i:hover{
                    
                   </div>
                 </div>
-              {% endfor %}       
+              {% endfor %}  
+              
+            </div>
+              {%else%}
+              <div style="max-width:300px;margin:auto">
+                <h1 style="color: rgb(26, 23, 23);">No events to show..!</h1>
+                <button style="border-style: hidden;height:35px;border-radius: 6px; background-color: #7364ff;color: white; margin: 30px 80px;"><a href="/admin/addevent" style="text-decoration: none;color: rgb(255, 255, 255);">SCHEDULE</a></button>
+               </div>
+             
+              {%endif%}
                
-        </div>
         
       </div>
     </div>

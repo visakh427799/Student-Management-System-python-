@@ -23,7 +23,13 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <script src="main.js"></script>
+    <style>
+      .right .tab .box .st-section1 .st-info2 {
+  margin-top: 20px;}
+  .right .tab .box .st-section1 .st-info1 {
+  padding: 20px 30px;
+}
+    </style>
   </head>
   <body>
     <div class="nav">
@@ -36,12 +42,14 @@
     <div class="content">
       <div class="left">
         <ul class="list">
-          <li><a>DASHBOARD</a></li>
-          <li><a> Students</a></li>
-          <li><a>Faculties</a></li>
-          <li><a> Attendance</a></li>
-          <li><a> Marks</a></li>
-          <li><a> Events</a></li>
+          <li style="padding-top:30px;"><a style=" color: white;text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+          <li style="padding-top:0px;"> <a style=" color: white;text-decoration: none;" href="/admin/students"> Students</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/faculties"> Faculties</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/enter_attendance"> Attendance</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;"> Marks</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/events"> Events</a></li>
+
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;"> Add student </a></li>
         </ul>
       </div>
       <div class="right">
@@ -66,7 +74,7 @@
                       
                       <div class="st-info1">
                         <input type="hidden" name="stid" value={{account.id}}>
-                        <input type="hidden" name="previmg" value={{account.profile_img}}
+                        <input type="hidden" name="previmg" value={{account.profile_img}}>
                         <label>Student name</label>
                          <div class="inp-grp">
                              <input required name="fname" value='{{account.fname}}' placeholder="Enter student name" type="text"> 

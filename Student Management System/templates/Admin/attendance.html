@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+    rel="stylesheet"
+    type="text/css"
+
+    media="screen"
+    href="{{ url_for('static',filename='/../../static/styles/Admin/attendance.css') }}"
+
+    
+  />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Sans+Pro:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="nav-brand">
+        <h3>ADMIN</h3>
+      </div>
+      <h4>Logout</h4>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <ul >
+          <li style="padding-top:10px;"><a style=" color: rgb(255, 255, 255);text-decoration: none;" href="/admin/dashboard">DASHBOARD</a></li>
+          <li style="padding-top:0px;"> <a style=" color: white;text-decoration: none;" href="/admin/students"> 👨🏻‍🎓Students</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/faculties">👨🏼‍🏫Faculties</a></li>
+          <li style="padding-top:0px;"><a style=" color: rgb(19, 226, 81);text-decoration: none;" href="/admin/enter_attendance">📅Attendance</a></li>
+          <li style="padding-top:0px;"><a style=" color: rgb(255, 255, 255);text-decoration: none;" href="/admin/marks"> ✅Marks</a></li>
+          <li style="padding-top:0px;"><a style=" color: white;text-decoration: none;" href="/admin/events"> 🎉Events</a></li>
+         
+      </ul>
+      </div>
+      <div class="right">
+
+        <div class="tab">
+          <div class="bar">
+            <div style="display: flex;flex-direction: row;">
+              <h3>Attendance</h3>
+
+              <div class="inp-grp">
+                <select  name="rel" class="select" style="width:130px;">
+                  <option value="Hindu">Today</option>
+                  <option value="Christian">This week</option>
+                  <option value="Christian">This month</option>
+                </select>
+                </select>
+              </div>
+              <h4 style="margin:17px 200px ;color:white">Visakh t.s- 19mca022</h4>
+            </div>
+          </div>
+        <div class="box">
+          
+          <div class="dt">
+            <label>SELECT DATE</label>
+            <div class="inp-grp">
+            <input name="dob"  placeholder="Select your date" type="date" id="sdate"> 
+            <!-- <button >SEARCH</button> -->
+            </div>
+          </div>
+         <p id="dts">Date: 22-10-2021</p>
+         {% if att_dict%}
+              <table >
+                <thead>
+
+                <td>ADM</td>
+                <td>BIA</td>
+                <td>ML</td>
+                <td>MC</td>
+                <td>BD</td>
+                
+                </thead>
+                <tbody>
+                 <tr>
+                    <td style="color: rgb(116, 133, 116);">{%if att_dict['ADM'] %} present {%else%} absent {%endif%}</td>
+                    <td style="color: rgb(154, 163, 154);">{%if att_dict['BIA'] %} present {%else%} absent {%endif%}</td> 
+                    <td style="color: rgb(157, 170, 154);">{%if att_dict['ML'] %} present {%else%} absent {%endif%}</td>
+                    <td style="color: rgb(124, 133, 124);">{%if att_dict['MC'] %} present {%else%} absent {%endif%}</td>
+                    <td style="color: rgb(134, 141, 134);">{%if att_dict['BD'] %} present {%else%} absent {%endif%}</td>
+                    
+               </tr>
+                </tbody>
+              </table>  
+              {%else%}
+              <div>
+                <h4 style="text-align: center;">Attendance of this date is not entered</h4>
+              </div>
+            {%endif%}
+              <!-- <div class="actions">
+                <button>EDIT</button>
+              </div> -->
+        
+      </div>
+    </div>
+    </div>
+    <!-- <div class="more">
+       <div class="sec2">
+
+       </div>
+    </div> -->
+    <script>
+      window.onload = function(){  
+      var today = new Date();
+var dd = today.getDate();
+
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+}
+let tod=yyyy+'-'+mm+'-'+dd;
+let dts=document.getElementById("dts")
+let sdate=document.getElementById("sdate")
+dts.innerHTML=tod
+sdate.value=tod
+
+      }
+    </script>
+  </body>
+</html>
